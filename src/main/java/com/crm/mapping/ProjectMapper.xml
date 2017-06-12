@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.model.Project" >
+    <id column="project_id" property="projectId" jdbcType="INTEGER" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="target_end_date" property="targetEndDate" jdbcType="DATE" />
+    <result column="actual_end_date" property="actualEndDate" jdbcType="DATE" />
+    <result column="target_budget" property="targetBudget" jdbcType="DOUBLE" />
+    <result column="process" property="process" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="customer_information" property="customerInformation" jdbcType="VARCHAR" />
+    <result column="discription" property="discription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    project_id, project_name, start_date, target_end_date, actual_end_date, target_budget, 
+    process, status, customer_information, discription
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from project
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.model.Project" >
+    insert into project (project_id, project_name, start_date, 
+      target_end_date, actual_end_date, target_budget, 
+      process, status, customer_information, 
+      discription)
+    values (#{projectId,jdbcType=INTEGER}, #{projectName,jdbcType=VARCHAR}, #{startDate,jdbcType=DATE}, 
+      #{targetEndDate,jdbcType=DATE}, #{actualEndDate,jdbcType=DATE}, #{targetBudget,jdbcType=DOUBLE}, 
+      #{process,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{customerInformation,jdbcType=VARCHAR}, 
+      #{discription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.model.Project" >
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="targetEndDate != null" >
+        target_end_date,
+      </if>
+      <if test="actualEndDate != null" >
+        actual_end_date,
+      </if>
+      <if test="targetBudget != null" >
+        target_budget,
+      </if>
+      <if test="process != null" >
+        process,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="customerInformation != null" >
+        customer_information,
+      </if>
+      <if test="discription != null" >
+        discription,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="targetEndDate != null" >
+        #{targetEndDate,jdbcType=DATE},
+      </if>
+      <if test="actualEndDate != null" >
+        #{actualEndDate,jdbcType=DATE},
+      </if>
+      <if test="targetBudget != null" >
+        #{targetBudget,jdbcType=DOUBLE},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="customerInformation != null" >
+        #{customerInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="discription != null" >
+        #{discription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.model.Project" >
+    update project
+    <set >
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="targetEndDate != null" >
+        target_end_date = #{targetEndDate,jdbcType=DATE},
+      </if>
+      <if test="actualEndDate != null" >
+        actual_end_date = #{actualEndDate,jdbcType=DATE},
+      </if>
+      <if test="targetBudget != null" >
+        target_budget = #{targetBudget,jdbcType=DOUBLE},
+      </if>
+      <if test="process != null" >
+        process = #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="customerInformation != null" >
+        customer_information = #{customerInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="discription != null" >
+        discription = #{discription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.model.Project" >
+    update project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=DATE},
+      target_end_date = #{targetEndDate,jdbcType=DATE},
+      actual_end_date = #{actualEndDate,jdbcType=DATE},
+      target_budget = #{targetBudget,jdbcType=DOUBLE},
+      process = #{process,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      customer_information = #{customerInformation,jdbcType=VARCHAR},
+      discription = #{discription,jdbcType=VARCHAR}
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </update>
+</mapper>

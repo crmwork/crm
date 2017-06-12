@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.OpportunityMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.model.Opportunity" >
+    <id column="opportunity_id" property="opportunityId" jdbcType="INTEGER" />
+    <result column="opportunity_name" property="opportunityName" jdbcType="VARCHAR" />
+    <result column="organization_id" property="organizationId" jdbcType="INTEGER" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="lead_source" property="leadSource" jdbcType="VARCHAR" />
+    <result column="sales_stage" property="salesStage" jdbcType="VARCHAR" />
+    <result column="expected_close_date" property="expectedCloseDate" jdbcType="DATE" />
+    <result column="expected_amount" property="expectedAmount" jdbcType="DOUBLE" />
+    <result column="assigned_to" property="assignedTo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    opportunity_id, opportunity_name, organization_id, contact, lead_source, sales_stage, 
+    expected_close_date, expected_amount, assigned_to
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from opportunity
+    where opportunity_id = #{opportunityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from opportunity
+    where opportunity_id = #{opportunityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.model.Opportunity" >
+    insert into opportunity (opportunity_id, opportunity_name, organization_id, 
+      contact, lead_source, sales_stage, 
+      expected_close_date, expected_amount, assigned_to
+      )
+    values (#{opportunityId,jdbcType=INTEGER}, #{opportunityName,jdbcType=VARCHAR}, #{organizationId,jdbcType=INTEGER}, 
+      #{contact,jdbcType=VARCHAR}, #{leadSource,jdbcType=VARCHAR}, #{salesStage,jdbcType=VARCHAR}, 
+      #{expectedCloseDate,jdbcType=DATE}, #{expectedAmount,jdbcType=DOUBLE}, #{assignedTo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.model.Opportunity" >
+    insert into opportunity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="opportunityId != null" >
+        opportunity_id,
+      </if>
+      <if test="opportunityName != null" >
+        opportunity_name,
+      </if>
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="leadSource != null" >
+        lead_source,
+      </if>
+      <if test="salesStage != null" >
+        sales_stage,
+      </if>
+      <if test="expectedCloseDate != null" >
+        expected_close_date,
+      </if>
+      <if test="expectedAmount != null" >
+        expected_amount,
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="opportunityId != null" >
+        #{opportunityId,jdbcType=INTEGER},
+      </if>
+      <if test="opportunityName != null" >
+        #{opportunityName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="leadSource != null" >
+        #{leadSource,jdbcType=VARCHAR},
+      </if>
+      <if test="salesStage != null" >
+        #{salesStage,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedCloseDate != null" >
+        #{expectedCloseDate,jdbcType=DATE},
+      </if>
+      <if test="expectedAmount != null" >
+        #{expectedAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="assignedTo != null" >
+        #{assignedTo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.model.Opportunity" >
+    update opportunity
+    <set >
+      <if test="opportunityName != null" >
+        opportunity_name = #{opportunityName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        organization_id = #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="leadSource != null" >
+        lead_source = #{leadSource,jdbcType=VARCHAR},
+      </if>
+      <if test="salesStage != null" >
+        sales_stage = #{salesStage,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedCloseDate != null" >
+        expected_close_date = #{expectedCloseDate,jdbcType=DATE},
+      </if>
+      <if test="expectedAmount != null" >
+        expected_amount = #{expectedAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to = #{assignedTo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where opportunity_id = #{opportunityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.model.Opportunity" >
+    update opportunity
+    set opportunity_name = #{opportunityName,jdbcType=VARCHAR},
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      contact = #{contact,jdbcType=VARCHAR},
+      lead_source = #{leadSource,jdbcType=VARCHAR},
+      sales_stage = #{salesStage,jdbcType=VARCHAR},
+      expected_close_date = #{expectedCloseDate,jdbcType=DATE},
+      expected_amount = #{expectedAmount,jdbcType=DOUBLE},
+      assigned_to = #{assignedTo,jdbcType=VARCHAR}
+    where opportunity_id = #{opportunityId,jdbcType=INTEGER}
+  </update>
+</mapper>

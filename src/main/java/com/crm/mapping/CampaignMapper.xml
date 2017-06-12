@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.CampaignMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.model.Campaign" >
+    <id column="campaign_id" property="campaignId" jdbcType="INTEGER" />
+    <result column="campaign_no" property="campaignNo" jdbcType="INTEGER" />
+    <result column="campaign_name" property="campaignName" jdbcType="VARCHAR" />
+    <result column="assigned_to" property="assignedTo" jdbcType="VARCHAR" />
+    <result column="campaign_status" property="campaignStatus" jdbcType="VARCHAR" />
+    <result column="campaign_type" property="campaignType" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="target_audience" property="targetAudience" jdbcType="VARCHAR" />
+    <result column="expected_close_date" property="expectedCloseDate" jdbcType="DATE" />
+    <result column="sponsor" property="sponsor" jdbcType="VARCHAR" />
+    <result column="target_size" property="targetSize" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="num_sent" property="numSent" jdbcType="INTEGER" />
+    <result column="actual_cost" property="actualCost" jdbcType="DOUBLE" />
+    <result column="budget_cost" property="budgetCost" jdbcType="DOUBLE" />
+    <result column="expected_response" property="expectedResponse" jdbcType="INTEGER" />
+    <result column="expected_sales_count" property="expectedSalesCount" jdbcType="INTEGER" />
+    <result column="expected_response_count" property="expectedResponseCount" jdbcType="INTEGER" />
+    <result column="actual_roi" property="actualRoi" jdbcType="INTEGER" />
+    <result column="expected_roi" property="expectedRoi" jdbcType="INTEGER" />
+    <result column="actual_sales_count" property="actualSalesCount" jdbcType="INTEGER" />
+    <result column="expected_revenue" property="expectedRevenue" jdbcType="INTEGER" />
+    <result column="description_details" property="descriptionDetails" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    campaign_id, campaign_no, campaign_name, assigned_to, campaign_status, campaign_type, 
+    product_id, target_audience, expected_close_date, sponsor, target_size, create_time, 
+    modify_time, num_sent, actual_cost, budget_cost, expected_response, expected_sales_count, 
+    expected_response_count, actual_roi, expected_roi, actual_sales_count, expected_revenue, 
+    description_details
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from campaign
+    where campaign_id = #{campaignId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from campaign
+    where campaign_id = #{campaignId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.model.Campaign" >
+    insert into campaign (campaign_id, campaign_no, campaign_name, 
+      assigned_to, campaign_status, campaign_type, 
+      product_id, target_audience, expected_close_date, 
+      sponsor, target_size, create_time, 
+      modify_time, num_sent, actual_cost, 
+      budget_cost, expected_response, expected_sales_count, 
+      expected_response_count, actual_roi, expected_roi, 
+      actual_sales_count, expected_revenue, description_details
+      )
+    values (#{campaignId,jdbcType=INTEGER}, #{campaignNo,jdbcType=INTEGER}, #{campaignName,jdbcType=VARCHAR}, 
+      #{assignedTo,jdbcType=VARCHAR}, #{campaignStatus,jdbcType=VARCHAR}, #{campaignType,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=INTEGER}, #{targetAudience,jdbcType=VARCHAR}, #{expectedCloseDate,jdbcType=DATE}, 
+      #{sponsor,jdbcType=VARCHAR}, #{targetSize,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{numSent,jdbcType=INTEGER}, #{actualCost,jdbcType=DOUBLE}, 
+      #{budgetCost,jdbcType=DOUBLE}, #{expectedResponse,jdbcType=INTEGER}, #{expectedSalesCount,jdbcType=INTEGER}, 
+      #{expectedResponseCount,jdbcType=INTEGER}, #{actualRoi,jdbcType=INTEGER}, #{expectedRoi,jdbcType=INTEGER}, 
+      #{actualSalesCount,jdbcType=INTEGER}, #{expectedRevenue,jdbcType=INTEGER}, #{descriptionDetails,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.model.Campaign" >
+    insert into campaign
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="campaignId != null" >
+        campaign_id,
+      </if>
+      <if test="campaignNo != null" >
+        campaign_no,
+      </if>
+      <if test="campaignName != null" >
+        campaign_name,
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to,
+      </if>
+      <if test="campaignStatus != null" >
+        campaign_status,
+      </if>
+      <if test="campaignType != null" >
+        campaign_type,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="targetAudience != null" >
+        target_audience,
+      </if>
+      <if test="expectedCloseDate != null" >
+        expected_close_date,
+      </if>
+      <if test="sponsor != null" >
+        sponsor,
+      </if>
+      <if test="targetSize != null" >
+        target_size,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="numSent != null" >
+        num_sent,
+      </if>
+      <if test="actualCost != null" >
+        actual_cost,
+      </if>
+      <if test="budgetCost != null" >
+        budget_cost,
+      </if>
+      <if test="expectedResponse != null" >
+        expected_response,
+      </if>
+      <if test="expectedSalesCount != null" >
+        expected_sales_count,
+      </if>
+      <if test="expectedResponseCount != null" >
+        expected_response_count,
+      </if>
+      <if test="actualRoi != null" >
+        actual_roi,
+      </if>
+      <if test="expectedRoi != null" >
+        expected_roi,
+      </if>
+      <if test="actualSalesCount != null" >
+        actual_sales_count,
+      </if>
+      <if test="expectedRevenue != null" >
+        expected_revenue,
+      </if>
+      <if test="descriptionDetails != null" >
+        description_details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="campaignId != null" >
+        #{campaignId,jdbcType=INTEGER},
+      </if>
+      <if test="campaignNo != null" >
+        #{campaignNo,jdbcType=INTEGER},
+      </if>
+      <if test="campaignName != null" >
+        #{campaignName,jdbcType=VARCHAR},
+      </if>
+      <if test="assignedTo != null" >
+        #{assignedTo,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignStatus != null" >
+        #{campaignStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignType != null" >
+        #{campaignType,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="targetAudience != null" >
+        #{targetAudience,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedCloseDate != null" >
+        #{expectedCloseDate,jdbcType=DATE},
+      </if>
+      <if test="sponsor != null" >
+        #{sponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="targetSize != null" >
+        #{targetSize,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="numSent != null" >
+        #{numSent,jdbcType=INTEGER},
+      </if>
+      <if test="actualCost != null" >
+        #{actualCost,jdbcType=DOUBLE},
+      </if>
+      <if test="budgetCost != null" >
+        #{budgetCost,jdbcType=DOUBLE},
+      </if>
+      <if test="expectedResponse != null" >
+        #{expectedResponse,jdbcType=INTEGER},
+      </if>
+      <if test="expectedSalesCount != null" >
+        #{expectedSalesCount,jdbcType=INTEGER},
+      </if>
+      <if test="expectedResponseCount != null" >
+        #{expectedResponseCount,jdbcType=INTEGER},
+      </if>
+      <if test="actualRoi != null" >
+        #{actualRoi,jdbcType=INTEGER},
+      </if>
+      <if test="expectedRoi != null" >
+        #{expectedRoi,jdbcType=INTEGER},
+      </if>
+      <if test="actualSalesCount != null" >
+        #{actualSalesCount,jdbcType=INTEGER},
+      </if>
+      <if test="expectedRevenue != null" >
+        #{expectedRevenue,jdbcType=INTEGER},
+      </if>
+      <if test="descriptionDetails != null" >
+        #{descriptionDetails,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.model.Campaign" >
+    update campaign
+    <set >
+      <if test="campaignNo != null" >
+        campaign_no = #{campaignNo,jdbcType=INTEGER},
+      </if>
+      <if test="campaignName != null" >
+        campaign_name = #{campaignName,jdbcType=VARCHAR},
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to = #{assignedTo,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignStatus != null" >
+        campaign_status = #{campaignStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignType != null" >
+        campaign_type = #{campaignType,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="targetAudience != null" >
+        target_audience = #{targetAudience,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedCloseDate != null" >
+        expected_close_date = #{expectedCloseDate,jdbcType=DATE},
+      </if>
+      <if test="sponsor != null" >
+        sponsor = #{sponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="targetSize != null" >
+        target_size = #{targetSize,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="numSent != null" >
+        num_sent = #{numSent,jdbcType=INTEGER},
+      </if>
+      <if test="actualCost != null" >
+        actual_cost = #{actualCost,jdbcType=DOUBLE},
+      </if>
+      <if test="budgetCost != null" >
+        budget_cost = #{budgetCost,jdbcType=DOUBLE},
+      </if>
+      <if test="expectedResponse != null" >
+        expected_response = #{expectedResponse,jdbcType=INTEGER},
+      </if>
+      <if test="expectedSalesCount != null" >
+        expected_sales_count = #{expectedSalesCount,jdbcType=INTEGER},
+      </if>
+      <if test="expectedResponseCount != null" >
+        expected_response_count = #{expectedResponseCount,jdbcType=INTEGER},
+      </if>
+      <if test="actualRoi != null" >
+        actual_roi = #{actualRoi,jdbcType=INTEGER},
+      </if>
+      <if test="expectedRoi != null" >
+        expected_roi = #{expectedRoi,jdbcType=INTEGER},
+      </if>
+      <if test="actualSalesCount != null" >
+        actual_sales_count = #{actualSalesCount,jdbcType=INTEGER},
+      </if>
+      <if test="expectedRevenue != null" >
+        expected_revenue = #{expectedRevenue,jdbcType=INTEGER},
+      </if>
+      <if test="descriptionDetails != null" >
+        description_details = #{descriptionDetails,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where campaign_id = #{campaignId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.model.Campaign" >
+    update campaign
+    set campaign_no = #{campaignNo,jdbcType=INTEGER},
+      campaign_name = #{campaignName,jdbcType=VARCHAR},
+      assigned_to = #{assignedTo,jdbcType=VARCHAR},
+      campaign_status = #{campaignStatus,jdbcType=VARCHAR},
+      campaign_type = #{campaignType,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      target_audience = #{targetAudience,jdbcType=VARCHAR},
+      expected_close_date = #{expectedCloseDate,jdbcType=DATE},
+      sponsor = #{sponsor,jdbcType=VARCHAR},
+      target_size = #{targetSize,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      num_sent = #{numSent,jdbcType=INTEGER},
+      actual_cost = #{actualCost,jdbcType=DOUBLE},
+      budget_cost = #{budgetCost,jdbcType=DOUBLE},
+      expected_response = #{expectedResponse,jdbcType=INTEGER},
+      expected_sales_count = #{expectedSalesCount,jdbcType=INTEGER},
+      expected_response_count = #{expectedResponseCount,jdbcType=INTEGER},
+      actual_roi = #{actualRoi,jdbcType=INTEGER},
+      expected_roi = #{expectedRoi,jdbcType=INTEGER},
+      actual_sales_count = #{actualSalesCount,jdbcType=INTEGER},
+      expected_revenue = #{expectedRevenue,jdbcType=INTEGER},
+      description_details = #{descriptionDetails,jdbcType=VARCHAR}
+    where campaign_id = #{campaignId,jdbcType=INTEGER}
+  </update>
+</mapper>

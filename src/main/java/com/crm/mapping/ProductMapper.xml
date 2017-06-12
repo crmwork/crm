@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.model.Product" >
+    <id column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_number" property="productNumber" jdbcType="VARCHAR" />
+    <result column="part_number" property="partNumber" jdbcType="VARCHAR" />
+    <result column="sale_start_date" property="saleStartDate" jdbcType="DATE" />
+    <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+    <result column="product_category" property="productCategory" jdbcType="VARCHAR" />
+    <result column="support_start" property="supportStart" jdbcType="DATE" />
+    <result column="support_expire" property="supportExpire" jdbcType="DATE" />
+    <result column="vandor_name" property="vandorName" jdbcType="VARCHAR" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+    <result column="vandor_partno" property="vandorPartno" jdbcType="VARCHAR" />
+    <result column="mfr_partno" property="mfrPartno" jdbcType="VARCHAR" />
+    <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
+    <result column="gl_account" property="glAccount" jdbcType="VARCHAR" />
+    <result column="unit_price" property="unitPrice" jdbcType="DOUBLE" />
+    <result column="commission_rate" property="commissionRate" jdbcType="VARCHAR" />
+    <result column="stock" property="stock" jdbcType="VARCHAR" />
+    <result column="product_image" property="productImage" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    product_id, product_name, product_number, part_number, sale_start_date, manufacturer, 
+    product_category, support_start, support_expire, vandor_name, website, vandor_partno, 
+    mfr_partno, serial_no, gl_account, unit_price, commission_rate, stock, product_image, 
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where product_id = #{productId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.model.Product" >
+    insert into product (product_id, product_name, product_number, 
+      part_number, sale_start_date, manufacturer, 
+      product_category, support_start, support_expire, 
+      vandor_name, website, vandor_partno, 
+      mfr_partno, serial_no, gl_account, 
+      unit_price, commission_rate, stock, 
+      product_image, description)
+    values (#{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productNumber,jdbcType=VARCHAR}, 
+      #{partNumber,jdbcType=VARCHAR}, #{saleStartDate,jdbcType=DATE}, #{manufacturer,jdbcType=VARCHAR}, 
+      #{productCategory,jdbcType=VARCHAR}, #{supportStart,jdbcType=DATE}, #{supportExpire,jdbcType=DATE}, 
+      #{vandorName,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{vandorPartno,jdbcType=VARCHAR}, 
+      #{mfrPartno,jdbcType=VARCHAR}, #{serialNo,jdbcType=VARCHAR}, #{glAccount,jdbcType=VARCHAR}, 
+      #{unitPrice,jdbcType=DOUBLE}, #{commissionRate,jdbcType=VARCHAR}, #{stock,jdbcType=VARCHAR}, 
+      #{productImage,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.model.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productNumber != null" >
+        product_number,
+      </if>
+      <if test="partNumber != null" >
+        part_number,
+      </if>
+      <if test="saleStartDate != null" >
+        sale_start_date,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+      <if test="productCategory != null" >
+        product_category,
+      </if>
+      <if test="supportStart != null" >
+        support_start,
+      </if>
+      <if test="supportExpire != null" >
+        support_expire,
+      </if>
+      <if test="vandorName != null" >
+        vandor_name,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="vandorPartno != null" >
+        vandor_partno,
+      </if>
+      <if test="mfrPartno != null" >
+        mfr_partno,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="glAccount != null" >
+        gl_account,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="commissionRate != null" >
+        commission_rate,
+      </if>
+      <if test="stock != null" >
+        stock,
+      </if>
+      <if test="productImage != null" >
+        product_image,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null" >
+        #{productNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="partNumber != null" >
+        #{partNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="saleStartDate != null" >
+        #{saleStartDate,jdbcType=DATE},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategory != null" >
+        #{productCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="supportStart != null" >
+        #{supportStart,jdbcType=DATE},
+      </if>
+      <if test="supportExpire != null" >
+        #{supportExpire,jdbcType=DATE},
+      </if>
+      <if test="vandorName != null" >
+        #{vandorName,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="vandorPartno != null" >
+        #{vandorPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="mfrPartno != null" >
+        #{mfrPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="glAccount != null" >
+        #{glAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="commissionRate != null" >
+        #{commissionRate,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="productImage != null" >
+        #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.model.Product" >
+    update product
+    <set >
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNumber != null" >
+        product_number = #{productNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="partNumber != null" >
+        part_number = #{partNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="saleStartDate != null" >
+        sale_start_date = #{saleStartDate,jdbcType=DATE},
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategory != null" >
+        product_category = #{productCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="supportStart != null" >
+        support_start = #{supportStart,jdbcType=DATE},
+      </if>
+      <if test="supportExpire != null" >
+        support_expire = #{supportExpire,jdbcType=DATE},
+      </if>
+      <if test="vandorName != null" >
+        vandor_name = #{vandorName,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="vandorPartno != null" >
+        vandor_partno = #{vandorPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="mfrPartno != null" >
+        mfr_partno = #{mfrPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="glAccount != null" >
+        gl_account = #{glAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="commissionRate != null" >
+        commission_rate = #{commissionRate,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=VARCHAR},
+      </if>
+      <if test="productImage != null" >
+        product_image = #{productImage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.model.Product" >
+    update product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      product_number = #{productNumber,jdbcType=VARCHAR},
+      part_number = #{partNumber,jdbcType=VARCHAR},
+      sale_start_date = #{saleStartDate,jdbcType=DATE},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      product_category = #{productCategory,jdbcType=VARCHAR},
+      support_start = #{supportStart,jdbcType=DATE},
+      support_expire = #{supportExpire,jdbcType=DATE},
+      vandor_name = #{vandorName,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      vandor_partno = #{vandorPartno,jdbcType=VARCHAR},
+      mfr_partno = #{mfrPartno,jdbcType=VARCHAR},
+      serial_no = #{serialNo,jdbcType=VARCHAR},
+      gl_account = #{glAccount,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=DOUBLE},
+      commission_rate = #{commissionRate,jdbcType=VARCHAR},
+      stock = #{stock,jdbcType=VARCHAR},
+      product_image = #{productImage,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+</mapper>

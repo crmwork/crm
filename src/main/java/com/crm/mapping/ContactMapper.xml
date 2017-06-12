@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.ContactMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.model.Contact" >
+    <id column="contact_id" property="contactId" jdbcType="INTEGER" />
+    <result column="first_name" property="firstName" jdbcType="VARCHAR" />
+    <result column="last_name" property="lastName" jdbcType="VARCHAR" />
+    <result column="organization_id" property="organizationId" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="assigned_to" property="assignedTo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    contact_id, first_name, last_name, organization_id, email, country, city, website, 
+    phone, assigned_to
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from contact
+    where contact_id = #{contactId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from contact
+    where contact_id = #{contactId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.model.Contact" >
+    insert into contact (contact_id, first_name, last_name, 
+      organization_id, email, country, 
+      city, website, phone, 
+      assigned_to)
+    values (#{contactId,jdbcType=INTEGER}, #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, 
+      #{organizationId,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{assignedTo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.model.Contact" >
+    insert into contact
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contactId != null" >
+        contact_id,
+      </if>
+      <if test="firstName != null" >
+        first_name,
+      </if>
+      <if test="lastName != null" >
+        last_name,
+      </if>
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contactId != null" >
+        #{contactId,jdbcType=INTEGER},
+      </if>
+      <if test="firstName != null" >
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="assignedTo != null" >
+        #{assignedTo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.model.Contact" >
+    update contact
+    <set >
+      <if test="firstName != null" >
+        first_name = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null" >
+        last_name = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        organization_id = #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to = #{assignedTo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contact_id = #{contactId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.model.Contact" >
+    update contact
+    set first_name = #{firstName,jdbcType=VARCHAR},
+      last_name = #{lastName,jdbcType=VARCHAR},
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      assigned_to = #{assignedTo,jdbcType=VARCHAR}
+    where contact_id = #{contactId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.model.Address" >
+    <id column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="shipping_address" property="shippingAddress" jdbcType="VARCHAR" />
+    <result column="shipping_po_box" property="shippingPoBox" jdbcType="VARCHAR" />
+    <result column="shipping_city" property="shippingCity" jdbcType="VARCHAR" />
+    <result column="shipping_state" property="shippingState" jdbcType="VARCHAR" />
+    <result column="shipping_code" property="shippingCode" jdbcType="VARCHAR" />
+    <result column="shipping_country" property="shippingCountry" jdbcType="VARCHAR" />
+    <result column="billing_address" property="billingAddress" jdbcType="VARCHAR" />
+    <result column="billing_po_box" property="billingPoBox" jdbcType="VARCHAR" />
+    <result column="billing_city" property="billingCity" jdbcType="VARCHAR" />
+    <result column="billing_state" property="billingState" jdbcType="VARCHAR" />
+    <result column="billing_code" property="billingCode" jdbcType="VARCHAR" />
+    <result column="billing_country" property="billingCountry" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    address_id, shipping_address, shipping_po_box, shipping_city, shipping_state, shipping_code, 
+    shipping_country, billing_address, billing_po_box, billing_city, billing_state, billing_code, 
+    billing_country
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.model.Address" >
+    insert into address (address_id, shipping_address, shipping_po_box, 
+      shipping_city, shipping_state, shipping_code, 
+      shipping_country, billing_address, billing_po_box, 
+      billing_city, billing_state, billing_code, 
+      billing_country)
+    values (#{addressId,jdbcType=INTEGER}, #{shippingAddress,jdbcType=VARCHAR}, #{shippingPoBox,jdbcType=VARCHAR}, 
+      #{shippingCity,jdbcType=VARCHAR}, #{shippingState,jdbcType=VARCHAR}, #{shippingCode,jdbcType=VARCHAR}, 
+      #{shippingCountry,jdbcType=VARCHAR}, #{billingAddress,jdbcType=VARCHAR}, #{billingPoBox,jdbcType=VARCHAR}, 
+      #{billingCity,jdbcType=VARCHAR}, #{billingState,jdbcType=VARCHAR}, #{billingCode,jdbcType=VARCHAR}, 
+      #{billingCountry,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.model.Address" >
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="shippingAddress != null" >
+        shipping_address,
+      </if>
+      <if test="shippingPoBox != null" >
+        shipping_po_box,
+      </if>
+      <if test="shippingCity != null" >
+        shipping_city,
+      </if>
+      <if test="shippingState != null" >
+        shipping_state,
+      </if>
+      <if test="shippingCode != null" >
+        shipping_code,
+      </if>
+      <if test="shippingCountry != null" >
+        shipping_country,
+      </if>
+      <if test="billingAddress != null" >
+        billing_address,
+      </if>
+      <if test="billingPoBox != null" >
+        billing_po_box,
+      </if>
+      <if test="billingCity != null" >
+        billing_city,
+      </if>
+      <if test="billingState != null" >
+        billing_state,
+      </if>
+      <if test="billingCode != null" >
+        billing_code,
+      </if>
+      <if test="billingCountry != null" >
+        billing_country,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="shippingAddress != null" >
+        #{shippingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingPoBox != null" >
+        #{shippingPoBox,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCity != null" >
+        #{shippingCity,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingState != null" >
+        #{shippingState,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCode != null" >
+        #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCountry != null" >
+        #{shippingCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="billingAddress != null" >
+        #{billingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="billingPoBox != null" >
+        #{billingPoBox,jdbcType=VARCHAR},
+      </if>
+      <if test="billingCity != null" >
+        #{billingCity,jdbcType=VARCHAR},
+      </if>
+      <if test="billingState != null" >
+        #{billingState,jdbcType=VARCHAR},
+      </if>
+      <if test="billingCode != null" >
+        #{billingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="billingCountry != null" >
+        #{billingCountry,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.model.Address" >
+    update address
+    <set >
+      <if test="shippingAddress != null" >
+        shipping_address = #{shippingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingPoBox != null" >
+        shipping_po_box = #{shippingPoBox,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCity != null" >
+        shipping_city = #{shippingCity,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingState != null" >
+        shipping_state = #{shippingState,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCode != null" >
+        shipping_code = #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCountry != null" >
+        shipping_country = #{shippingCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="billingAddress != null" >
+        billing_address = #{billingAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="billingPoBox != null" >
+        billing_po_box = #{billingPoBox,jdbcType=VARCHAR},
+      </if>
+      <if test="billingCity != null" >
+        billing_city = #{billingCity,jdbcType=VARCHAR},
+      </if>
+      <if test="billingState != null" >
+        billing_state = #{billingState,jdbcType=VARCHAR},
+      </if>
+      <if test="billingCode != null" >
+        billing_code = #{billingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="billingCountry != null" >
+        billing_country = #{billingCountry,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.model.Address" >
+    update address
+    set shipping_address = #{shippingAddress,jdbcType=VARCHAR},
+      shipping_po_box = #{shippingPoBox,jdbcType=VARCHAR},
+      shipping_city = #{shippingCity,jdbcType=VARCHAR},
+      shipping_state = #{shippingState,jdbcType=VARCHAR},
+      shipping_code = #{shippingCode,jdbcType=VARCHAR},
+      shipping_country = #{shippingCountry,jdbcType=VARCHAR},
+      billing_address = #{billingAddress,jdbcType=VARCHAR},
+      billing_po_box = #{billingPoBox,jdbcType=VARCHAR},
+      billing_city = #{billingCity,jdbcType=VARCHAR},
+      billing_state = #{billingState,jdbcType=VARCHAR},
+      billing_code = #{billingCode,jdbcType=VARCHAR},
+      billing_country = #{billingCountry,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+</mapper>

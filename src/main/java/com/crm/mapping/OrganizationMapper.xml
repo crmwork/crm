@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.OrganizationMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.model.Organization" >
+    <id column="organization_id" property="organizationId" jdbcType="INTEGER" />
+    <result column="organization_name" property="organizationName" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="zip" property="zip" jdbcType="INTEGER" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="assigned_to" property="assignedTo" jdbcType="VARCHAR" />
+    <result column="contracts" property="contracts" jdbcType="VARCHAR" />
+    <result column="members" property="members" jdbcType="VARCHAR" />
+    <result column="parent_organizations" property="parentOrganizations" jdbcType="VARCHAR" />
+    <result column="PBXmanger" property="pbxmanger" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    organization_id, organization_name, country, city, zip, website, phone, assigned_to, 
+    contracts, members, parent_organizations, PBXmanger, email, modify_time, create_time, 
+    description, fax
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where organization_id = #{organizationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from organization
+    where organization_id = #{organizationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.model.Organization" >
+    insert into organization (organization_id, organization_name, 
+      country, city, zip, 
+      website, phone, assigned_to, 
+      contracts, members, parent_organizations, 
+      PBXmanger, email, modify_time, 
+      create_time, description, fax
+      )
+    values (#{organizationId,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{zip,jdbcType=INTEGER}, 
+      #{website,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{assignedTo,jdbcType=VARCHAR}, 
+      #{contracts,jdbcType=VARCHAR}, #{members,jdbcType=VARCHAR}, #{parentOrganizations,jdbcType=VARCHAR}, 
+      #{pbxmanger,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.model.Organization" >
+    insert into organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+      <if test="organizationName != null" >
+        organization_name,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="zip != null" >
+        zip,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to,
+      </if>
+      <if test="contracts != null" >
+        contracts,
+      </if>
+      <if test="members != null" >
+        members,
+      </if>
+      <if test="parentOrganizations != null" >
+        parent_organizations,
+      </if>
+      <if test="pbxmanger != null" >
+        PBXmanger,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="organizationName != null" >
+        #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        #{zip,jdbcType=INTEGER},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="assignedTo != null" >
+        #{assignedTo,jdbcType=VARCHAR},
+      </if>
+      <if test="contracts != null" >
+        #{contracts,jdbcType=VARCHAR},
+      </if>
+      <if test="members != null" >
+        #{members,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrganizations != null" >
+        #{parentOrganizations,jdbcType=VARCHAR},
+      </if>
+      <if test="pbxmanger != null" >
+        #{pbxmanger,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.model.Organization" >
+    update organization
+    <set >
+      <if test="organizationName != null" >
+        organization_name = #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        zip = #{zip,jdbcType=INTEGER},
+      </if>
+      <if test="website != null" >
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to = #{assignedTo,jdbcType=VARCHAR},
+      </if>
+      <if test="contracts != null" >
+        contracts = #{contracts,jdbcType=VARCHAR},
+      </if>
+      <if test="members != null" >
+        members = #{members,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrganizations != null" >
+        parent_organizations = #{parentOrganizations,jdbcType=VARCHAR},
+      </if>
+      <if test="pbxmanger != null" >
+        PBXmanger = #{pbxmanger,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where organization_id = #{organizationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.model.Organization" >
+    update organization
+    set organization_name = #{organizationName,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      zip = #{zip,jdbcType=INTEGER},
+      website = #{website,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      assigned_to = #{assignedTo,jdbcType=VARCHAR},
+      contracts = #{contracts,jdbcType=VARCHAR},
+      members = #{members,jdbcType=VARCHAR},
+      parent_organizations = #{parentOrganizations,jdbcType=VARCHAR},
+      PBXmanger = #{pbxmanger,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR}
+    where organization_id = #{organizationId,jdbcType=INTEGER}
+  </update>
+
+  <select id="find" parameterType="Map" resultMap="BaseResultMap">
+    select o.,o.assigned_to,o.phone,o.website,a.binng_city
+    from organization as o
+    innner JOIN address a
+    on o.organization_id = a.organization_id
+    <if test="start!=null and size!=null">
+      limit #{start},#{size}
+    </if>
+
+    <where>
+      <if test="organizationName!=null and organizationName!='' ">
+        and organization_name like #{organizationName}
+      </if>
+      <if test="assignedTo!=null and assignedTo!='' ">
+        and assigned_to = #{assignedTo}
+      </if>
+      <if test="billing!=null and assignedTo!='' ">
+        and assigned_to = #{assignedTo}
+      </if>
+      <if test="phone!=null and phone!='' ">
+        and phone = #{phone}
+      </if>
+      <if test="assignedTo!=null and assignedTo!='' ">
+        and assigned_to = #{assignedTo}
+      </if>
+    </where>
+  </select>
+
+  <select id="getTotal" parameterType="Map" resultType="Long">
+    select count(*) from organization
+  </select>
+</mapper>

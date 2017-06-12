@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.DocumentMapper" >
+  <resultMap id="BaseResultMap" type="com.crm.model.Document" >
+    <id column="document_id" property="documentId" jdbcType="INTEGER" />
+    <result column="document_name" property="documentName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modified_time" property="modifiedTime" jdbcType="TIMESTAMP" />
+    <result column="assigned_to" property="assignedTo" jdbcType="VARCHAR" />
+    <result column="discription" property="discription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    document_id, document_name, create_time, modified_time, assigned_to, discription
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from document
+    where document_id = #{documentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from document
+    where document_id = #{documentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crm.model.Document" >
+    insert into document (document_id, document_name, create_time, 
+      modified_time, assigned_to, discription
+      )
+    values (#{documentId,jdbcType=INTEGER}, #{documentName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{assignedTo,jdbcType=VARCHAR}, #{discription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.crm.model.Document" >
+    insert into document
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="documentId != null" >
+        document_id,
+      </if>
+      <if test="documentName != null" >
+        document_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time,
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to,
+      </if>
+      <if test="discription != null" >
+        discription,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="documentId != null" >
+        #{documentId,jdbcType=INTEGER},
+      </if>
+      <if test="documentName != null" >
+        #{documentName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assignedTo != null" >
+        #{assignedTo,jdbcType=VARCHAR},
+      </if>
+      <if test="discription != null" >
+        #{discription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crm.model.Document" >
+    update document
+    <set >
+      <if test="documentName != null" >
+        document_name = #{documentName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assignedTo != null" >
+        assigned_to = #{assignedTo,jdbcType=VARCHAR},
+      </if>
+      <if test="discription != null" >
+        discription = #{discription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where document_id = #{documentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crm.model.Document" >
+    update document
+    set document_name = #{documentName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      assigned_to = #{assignedTo,jdbcType=VARCHAR},
+      discription = #{discription,jdbcType=VARCHAR}
+    where document_id = #{documentId,jdbcType=INTEGER}
+  </update>
+</mapper>
