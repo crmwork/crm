@@ -238,7 +238,7 @@
   <select id="find" parameterType="Map" resultMap="BaseResultMap">
     select o.,o.assigned_to,o.phone,o.website,a.binng_city
     from organization as o
-    innner JOIN address a
+    INNER JOIN address a
     on o.organization_id = a.organization_id
     <if test="start!=null and size!=null">
       limit #{start},#{size}
@@ -251,19 +251,39 @@
       <if test="assignedTo!=null and assignedTo!='' ">
         and assigned_to = #{assignedTo}
       </if>
-      <if test="billing!=null and assignedTo!='' ">
-        and assigned_to = #{assignedTo}
+      <if test="billingCity!=null and billingCity!='' ">
+        and billing_city = #{billingCity}
       </if>
       <if test="phone!=null and phone!='' ">
         and phone = #{phone}
       </if>
-      <if test="assignedTo!=null and assignedTo!='' ">
-        and assigned_to = #{assignedTo}
+      <if test="website!=null and website!='' ">
+        and website = #{website}
       </if>
     </where>
   </select>
 
   <select id="getTotal" parameterType="Map" resultType="Long">
-    select count(*) from organization
+    select count(*)
+    from organization as o
+    INNER JOIN address a
+    on o.organization_id = a.organization_id
+    <where>
+      <if test="organizationName!=null and organizationName!='' ">
+        and organization_name like #{organizationName}
+      </if>
+      <if test="assignedTo!=null and assignedTo!='' ">
+        and assigned_to = #{assignedTo}
+      </if>
+      <if test="billingCity!=null and billingCity!='' ">
+        and billing_city = #{billingCity}
+      </if>
+      <if test="phone!=null and phone!='' ">
+        and phone = #{phone}
+      </if>
+      <if test="website!=null and website!='' ">
+        and website = #{website}
+      </if>
+    </where>
   </select>
 </mapper>
