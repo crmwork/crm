@@ -150,4 +150,5 @@
       assigned_to = #{assignedTo,jdbcType=VARCHAR}
     where contact_id = #{contactId,jdbcType=INTEGER}
   </update>
+
 </mapper>

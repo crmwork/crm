@@ -2,6 +2,9 @@ package com.crm.dao;
 
 import com.crm.model.Contact;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ContactMapper {
     int deleteByPrimaryKey(Integer contactId);
 
@@ -14,4 +17,8 @@ public interface ContactMapper {
     int updateByPrimaryKeySelective(Contact record);
 
     int updateByPrimaryKey(Contact record);
+
+    public List<Contact> find(Map<String, Object> map);
+
+    public long getTotal(Map<String, Object> map);
 }

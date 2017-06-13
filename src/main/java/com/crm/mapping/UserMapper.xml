@@ -90,4 +90,10 @@
       role_id = #{roleId,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+  <select id="login" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_name = #{userName} AND password = #{password}
+  </select>
 </mapper>

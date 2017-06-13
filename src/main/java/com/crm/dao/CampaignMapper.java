@@ -2,6 +2,9 @@ package com.crm.dao;
 
 import com.crm.model.Campaign;
 
+import java.util.List;
+import java.util.Map;
+
 public interface CampaignMapper {
     int deleteByPrimaryKey(Integer campaignId);
 
@@ -14,4 +17,8 @@ public interface CampaignMapper {
     int updateByPrimaryKeySelective(Campaign record);
 
     int updateByPrimaryKey(Campaign record);
+
+    public List<Campaign> find(Map<String, Object> map);
+
+    public long getTotal(Map<String, Object> map);
 }

@@ -1,8 +1,11 @@
-package com.crm.model;
+package com.crm.bean;
 
-public class Address {
-    private Integer addressId;
+import com.crm.model.Organization;
 
+/**
+ * Created by Administrator on 2017/6/13/013.
+ */
+public class OrganizationAddress extends Organization{
     private String shippingAddress;
 
     private String shippingPoBox;
@@ -27,13 +30,6 @@ public class Address {
 
     private String billingCountry;
 
-    public Integer getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
-    }
 
     public String getShippingAddress() {
         return shippingAddress;
@@ -130,5 +126,4 @@ public class Address {
     public void setBillingCountry(String billingCountry) {
         this.billingCountry = billingCountry == null ? null : billingCountry.trim();
     }
-
 }

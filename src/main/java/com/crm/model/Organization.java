@@ -37,6 +37,8 @@ public class Organization {
 
     private String fax;
 
+    private int addressId;
+
     public Integer getOrganizationId() {
         return organizationId;
     }
@@ -155,6 +157,14 @@ public class Organization {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public int getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
     }
 
     public String getDescription() {

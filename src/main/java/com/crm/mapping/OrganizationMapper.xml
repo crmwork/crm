@@ -19,14 +19,49 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="shipping_address" property="shippingAddress" jdbcType="VARCHAR" />
+    <result column="shipping_po_box" property="shippingPoBox" jdbcType="VARCHAR" />
+    <result column="shipping_city" property="shippingCity" jdbcType="VARCHAR" />
+    <result column="shipping_state" property="shippingState" jdbcType="VARCHAR" />
+    <result column="shipping_code" property="shippingCode" jdbcType="VARCHAR" />
+    <result column="shipping_country" property="shippingCountry" jdbcType="VARCHAR" />
+    <result column="billing_address" property="billingAddress" jdbcType="VARCHAR" />
+    <result column="billing_po_box" property="billingPoBox" jdbcType="VARCHAR" />
+    <result column="billing_city" property="billingCity" jdbcType="VARCHAR" />
+    <result column="billing_state" property="billingState" jdbcType="VARCHAR" />
+    <result column="billing_code" property="billingCode" jdbcType="VARCHAR" />
+    <result column="billing_country" property="billingCountry" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="myResultMap" type="com.crm.bean.OrganizationAddress" >
+    <id column="organization_id" property="organizationId" jdbcType="INTEGER" />
+    <result column="organization_name" property="organizationName" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="zip" property="zip" jdbcType="INTEGER" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="assigned_to" property="assignedTo" jdbcType="VARCHAR" />
+    <result column="contracts" property="contracts" jdbcType="VARCHAR" />
+    <result column="members" property="members" jdbcType="VARCHAR" />
+    <result column="parent_organizations" property="parentOrganizations" jdbcType="VARCHAR" />
+    <result column="PBXmanger" property="pbxmanger" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+
   </resultMap>
   <sql id="Base_Column_List" >
-    organization_id, organization_name, country, city, zip, website, phone, assigned_to, 
-    contracts, members, parent_organizations, PBXmanger, email, modify_time, create_time, 
-    description, fax
+    organization_id, organization_name, country, city, zip, website, phone, assigned_to,
+    contracts, members, parent_organizations, PBXmanger, email, modify_time, create_time,
+    description, fax, address_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from organization
     where organization_id = #{organizationId,jdbcType=INTEGER}
@@ -36,20 +71,20 @@
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.crm.model.Organization" >
-    insert into organization (organization_id, organization_name, 
-      country, city, zip, 
-      website, phone, assigned_to, 
-      contracts, members, parent_organizations, 
-      PBXmanger, email, modify_time, 
-      create_time, description, fax
-      )
-    values (#{organizationId,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR}, 
-      #{country,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{zip,jdbcType=INTEGER}, 
-      #{website,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{assignedTo,jdbcType=VARCHAR}, 
-      #{contracts,jdbcType=VARCHAR}, #{members,jdbcType=VARCHAR}, #{parentOrganizations,jdbcType=VARCHAR}, 
-      #{pbxmanger,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}
-      )
+    insert into organization (organization_id, organization_name,
+    country, city, zip,
+    website, phone, assigned_to,
+    contracts, members, parent_organizations,
+    PBXmanger, email, modify_time,
+    create_time, description, fax,
+    address_id)
+    values (#{organizationId,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR},
+    #{country,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{zip,jdbcType=INTEGER},
+    #{website,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{assignedTo,jdbcType=VARCHAR},
+    #{contracts,jdbcType=VARCHAR}, #{members,jdbcType=VARCHAR}, #{parentOrganizations,jdbcType=VARCHAR},
+    #{pbxmanger,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+    #{createTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR},
+    #{addressId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.crm.model.Organization" >
     insert into organization
@@ -105,6 +140,9 @@
       <if test="fax != null" >
         fax,
       </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="organizationId != null" >
@@ -157,6 +195,9 @@
       </if>
       <if test="fax != null" >
         #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -211,35 +252,39 @@
       <if test="fax != null" >
         fax = #{fax,jdbcType=VARCHAR},
       </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
     </set>
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.crm.model.Organization" >
     update organization
     set organization_name = #{organizationName,jdbcType=VARCHAR},
-      country = #{country,jdbcType=VARCHAR},
-      city = #{city,jdbcType=VARCHAR},
-      zip = #{zip,jdbcType=INTEGER},
-      website = #{website,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      assigned_to = #{assignedTo,jdbcType=VARCHAR},
-      contracts = #{contracts,jdbcType=VARCHAR},
-      members = #{members,jdbcType=VARCHAR},
-      parent_organizations = #{parentOrganizations,jdbcType=VARCHAR},
-      PBXmanger = #{pbxmanger,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      description = #{description,jdbcType=VARCHAR},
-      fax = #{fax,jdbcType=VARCHAR}
+    country = #{country,jdbcType=VARCHAR},
+    city = #{city,jdbcType=VARCHAR},
+    zip = #{zip,jdbcType=INTEGER},
+    website = #{website,jdbcType=VARCHAR},
+    phone = #{phone,jdbcType=VARCHAR},
+    assigned_to = #{assignedTo,jdbcType=VARCHAR},
+    contracts = #{contracts,jdbcType=VARCHAR},
+    members = #{members,jdbcType=VARCHAR},
+    parent_organizations = #{parentOrganizations,jdbcType=VARCHAR},
+    PBXmanger = #{pbxmanger,jdbcType=VARCHAR},
+    email = #{email,jdbcType=VARCHAR},
+    modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    description = #{description,jdbcType=VARCHAR},
+    fax = #{fax,jdbcType=VARCHAR},
+    address_id = #{addressId,jdbcType=INTEGER}
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </update>
 
-  <select id="find" parameterType="Map" resultMap="BaseResultMap">
-    select o.,o.assigned_to,o.phone,o.website,a.binng_city
+  <select id="find" parameterType="Map" resultMap="myResultMap">
+    select *
     from organization as o
     INNER JOIN address a
-    on o.organization_id = a.organization_id
+    on o.address_id = a.address_id
     <if test="start!=null and size!=null">
       limit #{start},#{size}
     </if>
@@ -249,16 +294,16 @@
         and organization_name like #{organizationName}
       </if>
       <if test="assignedTo!=null and assignedTo!='' ">
-        and assigned_to = #{assignedTo}
+        and assigned_to like #{assignedTo}
       </if>
       <if test="billingCity!=null and billingCity!='' ">
-        and billing_city = #{billingCity}
+        and billing_city like #{billingCity}
       </if>
       <if test="phone!=null and phone!='' ">
-        and phone = #{phone}
+        and phone like #{phone}
       </if>
       <if test="website!=null and website!='' ">
-        and website = #{website}
+        and website like #{website}
       </if>
     </where>
   </select>
@@ -267,22 +312,22 @@
     select count(*)
     from organization as o
     INNER JOIN address a
-    on o.organization_id = a.organization_id
+    on o.address_id = a.address_id
     <where>
       <if test="organizationName!=null and organizationName!='' ">
         and organization_name like #{organizationName}
       </if>
       <if test="assignedTo!=null and assignedTo!='' ">
-        and assigned_to = #{assignedTo}
+        and assigned_to like #{assignedTo}
       </if>
       <if test="billingCity!=null and billingCity!='' ">
-        and billing_city = #{billingCity}
+        and billing_city like #{billingCity}
       </if>
       <if test="phone!=null and phone!='' ">
-        and phone = #{phone}
+        and phone like #{phone}
       </if>
       <if test="website!=null and website!='' ">
-        and website = #{website}
+        and website like #{website}
       </if>
     </where>
   </select>

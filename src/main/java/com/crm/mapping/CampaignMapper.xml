@@ -317,4 +317,17 @@
       description_details = #{descriptionDetails,jdbcType=VARCHAR}
     where campaign_id = #{campaignId,jdbcType=INTEGER}
   </update>
+
+  <select id="find" parameterType="Map" resultMap="BaseResultMap">
+
+  </select>
+
+  <select id="getTotal" parameterType="Map" resultType="Long">
+    select count(*) from campaign
+  </select>
+
+  <select id="selectAll" parameterType="Map" resultMap="BaseResultMap">
+    select * from campaign
+  </select>
+
 </mapper>

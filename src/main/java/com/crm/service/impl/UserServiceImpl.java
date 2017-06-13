@@ -23,10 +23,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByPrimaryKey(userId);
     }
 
-    public List<User> selectAll() {
-        return null;
-    }
-
     public int add(User user) {
         return 0;
     }
@@ -35,12 +31,18 @@ public class UserServiceImpl implements UserService {
         return 0;
     }
 
-    public int updateImage(Integer userId, String userImage) {
+    public List<User> find(Map<String, Object> map) {
+        return null;
+    }
+
+    public long total(Map<String, Object> map) {
         return 0;
     }
 
-    public List<User> find(Map<String, Object> map) {
-        return null;
+    public User login(User user) {
+        String userName = user.getUserName();
+
+        return userMapper.login(userName,password);
     }
 
     public Long getTotal(Map<String, Object> map) {

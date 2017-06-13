@@ -43,13 +43,17 @@ public class OrganizationController {
      * @param organization
      * @return
      */
-    @RequestMapping(value = "list",method = RequestMethod.POST)
+    @RequestMapping(value = "list")
     @ResponseBody
     public Object organizationList(@RequestParam(value = "page",required = false)String page,
                                    @RequestParam(value = "rows",required = false)String rows,
                                    @RequestParam(value = "billingCity",required = false)String billingCity,
                                    Organization organization){
-        PageBean pageBean = new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
+        PageBean pageBean = null;
+        if (page != null && rows != null){
+            pageBean = new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
+        }
+
 
         Map<String,Object> map = new HashMap<String, Object>();
 
@@ -145,20 +149,20 @@ public class OrganizationController {
      * @param organizationId
      * @return
      */
-    @RequestMapping(value = "/{organizationId}",method = RequestMethod.GET)
-    public String getOrganization(@PathVariable("organizationId")String organizationId){
-        if (organizationId == null){
-            return "/404";
-        }
-        return "/organization/"+organizationId;
-    }
+//    @RequestMapping(value = "/{organizationId}",method = RequestMethod.GET)
+//    public String getOrganization(@PathVariable("organizationId")String organizationId){
+//        if (organizationId == null){
+//            return "/404";
+//        }
+//        return "/organization/"+organizationId;
+//    }
 
     /**
      * 获取客户详情
      * @param organizationId
      * @return
      */
-    @RequestMapping(value = "/{organizationId}",method = RequestMethod.POST)
+    @RequestMapping(value = "/{organizationId}")
     @ResponseBody
     public Object getOrganizationDetail(@PathVariable("organizationId")Integer organizationId){
         Json json = new Json();
